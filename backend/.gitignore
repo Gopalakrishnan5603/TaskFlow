@@ -10,6 +10,7 @@ lerna-debug.log*
 # Dependencies and Builds
 node_modules
 node/
+.env
 package-lock.json
 dist
 dist-ssr
