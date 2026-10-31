@@ -9,6 +9,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import api from "../api/axios";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -25,10 +26,19 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    try{
+      const response = await api.post('/auth/login',{
+        email: formData.email,
+        password: formData.password
+      })
 
-    console.log(formData);
+      console.log("Login Successfully", response.data);
+    } catch(err) {
+      console.log("Login Failed", err.response?.data || err.message)
+    }
   };
 
   return (
